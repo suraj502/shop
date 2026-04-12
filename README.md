@@ -1,6 +1,6 @@
-# 🛍️ MERN E-Commerce Store
+## 🎓 Learning MERN Stack
 
-A simple, beginner-friendly MERN stack e-commerce website built to understand how APIs work and how frontend-backend communication happens.
+This is a beginner-friendly MERN (MongoDB, Express, React, Node.js) e-commerce project. **Updated:** April 12, 2026
 
 ## 📁 Project Structure
 
