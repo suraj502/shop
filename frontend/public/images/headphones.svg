@@ -1,0 +1,25 @@
+<svg width="300" height="200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="300" height="200" fill="#e8e8f4"/>
+  
+  <!-- Left ear cup -->
+  <circle cx="80" cy="100" r="35" fill="#2c3e50"/>
+  <circle cx="80" cy="100" r="25" fill="#34495e"/>
+  
+  <!-- Headband -->
+  <path d="M 105 65 Q 150 40 195 65" stroke="#2c3e50" stroke-width="15" fill="none" stroke-linecap="round"/>
+  
+  <!-- Right ear cup -->
+  <circle cx="220" cy="100" r="35" fill="#2c3e50"/>
+  <circle cx="220" cy="100" r="25" fill="#34495e"/>
+  
+  <!-- Speaker details -->
+  <circle cx="80" cy="100" r="15" fill="#1abc9c" opacity="0.6"/>
+  <circle cx="220" cy="100" r="15" fill="#1abc9c" opacity="0.6"/>
+  
+  <!-- Microphone dot -->
+  <circle cx="150" cy="50" r="4" fill="#e74c3c"/>
+  
+  <!-- Text -->
+  <text x="150" y="190" font-size="16" font-weight="bold" text-anchor="middle" fill="#2c3e50">Headphones</text>
+</svg>

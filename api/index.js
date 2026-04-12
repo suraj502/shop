@@ -1,5 +1,5 @@
-import express from 'express';
-import cors from 'cors';
+const express = require('express');
+const cors = require('cors');
 
 const app = express();
 
@@ -56,4 +56,4 @@ app.use((req, res) => {
   res.status(404).json({ error: 'Route not found' });
 });
 
-export default app;
+module.exports = app;
