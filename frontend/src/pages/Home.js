@@ -2,21 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 export default function Home() {
-  const handleAddToCart = (product) => {
-    const cart = JSON.parse(localStorage.getItem('cart')) || [];
-    const existingItem = cart.find(item => item.id === product.id);
-    
-    if (existingItem) {
-      existingItem.quantity += 1;
-    } else {
-      cart.push({ ...product, quantity: 1 });
-    }
-    
-    localStorage.setItem('cart', JSON.stringify(cart));
-    alert(`${product.name} added to cart!`);
-    window.location.reload();
-  };
-
   return (
     <div className="space-y-12">
       {/* Hero Section */}

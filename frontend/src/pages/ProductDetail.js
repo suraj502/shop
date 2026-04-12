@@ -10,22 +10,22 @@ export default function ProductDetail() {
   const [quantity, setQuantity] = useState(1);
 
   useEffect(() => {
+    const fetchProduct = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+        const data = await getProductById(parseInt(id));
+        setProduct(data);
+      } catch (err) {
+        setError('Failed to fetch product details');
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    
     fetchProduct();
   }, [id]);
-
-  const fetchProduct = async () => {
-    try {
-      setLoading(true);
-      setError(null);
-      const data = await getProductById(parseInt(id));
-      setProduct(data);
-    } catch (err) {
-      setError('Failed to fetch product details');
-      console.error(err);
-    } finally {
-      setLoading(false);
-    }
-  };
 
   const handleAddToCart = () => {
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
