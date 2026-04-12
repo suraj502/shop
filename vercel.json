@@ -19,8 +19,16 @@
       "dest": "/api/index.js"
     },
     {
+      "src": "/static/(.*)",
+      "dest": "/frontend/build/static/$1"
+    },
+    {
+      "src": "^/(?!static).*\\..*$",
+      "dest": "/frontend/build/$0"
+    },
+    {
       "src": "/(.*)",
-      "dest": "/frontend/index.html"
+      "dest": "/frontend/build/index.html"
     }
   ]
 }
