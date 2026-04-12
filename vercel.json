@@ -1,29 +1,19 @@
 {
-  "experimentalServices": {
-    "frontend": {
-      "entrypoint": "frontend",
-      "routePrefix": "/",
-      "framework": "create-react-app"
-    },
-    "backend": {
-      "entrypoint": "backend",
-      "routePrefix": "/_/backend"
-    }
-  },
+  "buildCommand": "npm run build --prefix frontend && npm run build --prefix backend",
+  "outputDirectory": "./frontend/build",
   "routes": [
     {
-      "src": "^/_/backend/(.*)",
-      "dest": "backend/$1"
+      "src": "^/api/(.*)",
+      "dest": "/backend/api/$1",
+      "methods": ["GET", "POST", "PUT", "DELETE", "PATCH"]
     },
     {
-      "src": "^/(?!_/backend).*",
-      "dest": "frontend/index.html"
-    }
-  ],
-  "rewrites": [
+      "src": "^/images/(.*)",
+      "dest": "/backend/public/images/$1"
+    },
     {
-      "source": "/api/:path*",
-      "destination": "/_/backend/api/:path*"
+      "src": ".*",
+      "dest": "/index.html"
     }
   ]
 }

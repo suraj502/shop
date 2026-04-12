@@ -1,9 +1,11 @@
 import axios from 'axios';
 
-// For production (Vercel): use relative path /api (rewrites to /_/backend/api)
-// For local: use http://localhost:5000/api
+// For production (Vercel): use /api (routed to backend)
+// For local development: use http://localhost:5000/api
 const API_BASE_URL = process.env.REACT_APP_API_URL || 
-  (process.env.NODE_ENV === 'production' ? '/api' : 'http://localhost:5000/api');
+  (typeof window !== 'undefined' && window.location.host.includes('localhost') 
+    ? 'http://localhost:5000/api' 
+    : '/api');
 
 // Create axios instance with base URL
 const api = axios.create({
