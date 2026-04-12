@@ -18,31 +18,31 @@ const products = [
 // ==================== API ENDPOINTS ====================
 
 // Get all products
-app.get('/api/products', (req, res) => {
-  console.log('📤 API Call: GET /api/products');
+app.get('/products', (req, res) => {
+  console.log('📤 API Call: GET /products');
   res.json(products);
 });
 
 // Get single product by ID
-app.get('/api/products/:id', (req, res) => {
+app.get('/products/:id', (req, res) => {
   const product = products.find(p => p.id === parseInt(req.params.id));
   if (!product) {
     return res.status(404).json({ error: 'Product not found' });
   }
-  console.log('📤 API Call: GET /api/products/:id =>', req.params.id);
+  console.log('📤 API Call: GET /products/:id =>', req.params.id);
   res.json(product);
 });
 
 // Get products by category
-app.get('/api/products/category/:category', (req, res) => {
+app.get('/products/category/:category', (req, res) => {
   const categoryProducts = products.filter(p => p.category.toLowerCase() === req.params.category.toLowerCase());
-  console.log('📤 API Call: GET /api/products/category/:category =>', req.params.category);
+  console.log('📤 API Call: GET /products/category/:category =>', req.params.category);
   res.json(categoryProducts);
 });
 
 // Health check
-app.get('/api/health', (req, res) => {
-  console.log('📤 API Call: GET /api/health');
+app.get('/health', (req, res) => {
+  console.log('📤 API Call: GET /health');
   res.json({ status: 'API is running!' });
 });
 
