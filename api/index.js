@@ -15,16 +15,18 @@ const products = [
   { id: 4, name: 'Tablet', price: 449.99, description: 'Portable tablet', image: '/images/tablet.svg', category: 'Electronics' }
 ];
 
+const apiRouter = express.Router();
+
 // ==================== API ENDPOINTS ====================
 
 // Get all products
-app.get('/products', (req, res) => {
+apiRouter.get('/products', (req, res) => {
   console.log('📤 API Call: GET /products');
   res.json(products);
 });
 
 // Get single product by ID
-app.get('/products/:id', (req, res) => {
+apiRouter.get('/products/:id', (req, res) => {
   const product = products.find(p => p.id === parseInt(req.params.id));
   if (!product) {
     return res.status(404).json({ error: 'Product not found' });
@@ -34,17 +36,21 @@ app.get('/products/:id', (req, res) => {
 });
 
 // Get products by category
-app.get('/products/category/:category', (req, res) => {
+apiRouter.get('/products/category/:category', (req, res) => {
   const categoryProducts = products.filter(p => p.category.toLowerCase() === req.params.category.toLowerCase());
   console.log('📤 API Call: GET /products/category/:category =>', req.params.category);
   res.json(categoryProducts);
 });
 
 // Health check
-app.get('/health', (req, res) => {
+apiRouter.get('/health', (req, res) => {
   console.log('📤 API Call: GET /health');
   res.json({ status: 'API is running!' });
 });
+
+// Accept both /api/* and /* paths in serverless/runtime routing.
+app.use('/api', apiRouter);
+app.use('/', apiRouter);
 
 // Default route
 app.get('/', (req, res) => {
