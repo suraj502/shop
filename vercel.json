@@ -1,9 +1,4 @@
 {
-  "projectSettings": {
-    "installCommand": "npm install --prefix backend && npm install --prefix frontend",
-    "buildCommand": "npm run build --prefix frontend",
-    "devCommand": "concurrently \"npm run dev --prefix backend\" \"npm start --prefix frontend\""
-  },
   "experimentalServices": {
     "frontend": {
       "entrypoint": "frontend",
@@ -30,8 +25,5 @@
       "source": "/api/:path*",
       "destination": "/_/backend/api/:path*"
     }
-  ],
-  "env": {
-    "NODE_ENV": "production"
-  }
+  ]
 }
