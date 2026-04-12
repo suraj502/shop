@@ -1,0 +1,25 @@
+<svg width="300" height="200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="300" height="200" fill="#e8f4f8"/>
+  
+  <!-- Laptop body -->
+  <rect x="50" y="50" width="200" height="120" rx="5" fill="#2c3e50"/>
+  
+  <!-- Laptop screen -->
+  <rect x="60" y="60" width="180" height="95" fill="#3498db"/>
+  
+  <!-- Screen content -->
+  <circle cx="150" cy="95" r="20" fill="#1abc9c"/>
+  <rect x="100" y="80" width="100" height="8" fill="#ecf0f1"/>
+  <rect x="100" y="95" width="100" height="8" fill="#ecf0f1"/>
+  <rect x="100" y="110" width="60" height="8" fill="#ecf0f1"/>
+  
+  <!-- Keyboard -->
+  <rect x="60" y="160" width="180" height="8" fill="#34495e"/>
+  <line x1="70" y1="160" x2="70" y2="168" stroke="#2c3e50" stroke-width="1"/>
+  <line x1="80" y1="160" x2="80" y2="168" stroke="#2c3e50" stroke-width="1"/>
+  <line x1="90" y1="160" x2="90" y2="168" stroke="#2c3e50" stroke-width="1"/>
+  
+  <!-- Text -->
+  <text x="150" y="190" font-size="16" font-weight="bold" text-anchor="middle" fill="#2c3e50">Laptop</text>
+</svg>
