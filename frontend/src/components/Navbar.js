@@ -76,7 +76,7 @@ export default function Navbar() {
           <button
             type="button"
             onClick={toggleTheme}
-            className="inline-flex h-10 w-10 items-center justify-center border border-[var(--outline)] text-[var(--primary)] transition hover:bg-[var(--surface-low)]"
+            className="inline-flex h-11 w-11 items-center justify-center border border-[var(--outline)] text-[var(--primary)] transition hover:bg-[var(--surface-low)] md:h-10 md:w-10"
             aria-label="Toggle theme"
             title={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
           >
@@ -85,7 +85,7 @@ export default function Navbar() {
             </span>
           </button>
 
-          <Link to="/products" className={`inline-flex sm:hidden atelier-label border px-3 py-2 ${isActive('/products') ? 'border-[var(--primary)] text-[var(--primary)]' : 'border-[var(--outline)] hover:border-[var(--primary)] hover:text-[var(--primary)]'}`}>
+          <Link to="/products" className={`inline-flex sm:hidden atelier-label border px-4 py-2.5 ${isActive('/products') ? 'border-[var(--primary)] text-[var(--primary)]' : 'border-[var(--outline)] hover:border-[var(--primary)] hover:text-[var(--primary)]'}`}>
             Collections
           </Link>
 
@@ -95,7 +95,7 @@ export default function Navbar() {
           <Link to="/products" className={`hidden sm:inline-flex atelier-label border px-4 py-2 ${isActive('/products') ? 'border-[var(--primary)] text-[var(--primary)]' : 'border-[var(--outline)] hover:border-[var(--primary)] hover:text-[var(--primary)]'}`}>
             Shop
           </Link>
-          <Link to="/cart" className={`relative atelier-label border px-4 py-2 ${isActive('/cart') ? 'border-[var(--primary)] text-[var(--primary)]' : 'border-[var(--outline)] hover:border-[var(--primary)] hover:text-[var(--primary)]'}`}>
+          <Link to="/cart" className={`relative atelier-label border px-4 py-2.5 sm:py-2 ${isActive('/cart') ? 'border-[var(--primary)] text-[var(--primary)]' : 'border-[var(--outline)] hover:border-[var(--primary)] hover:text-[var(--primary)]'}`}>
             Bag
             {cartCount > 0 && (
               <span className="absolute -right-2 -top-2 flex h-5 min-w-5 items-center justify-center rounded-full bg-[var(--primary)] px-1 text-[10px] font-bold text-white">
