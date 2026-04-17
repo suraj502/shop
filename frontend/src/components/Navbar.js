@@ -85,14 +85,14 @@ export default function Navbar() {
             </span>
           </button>
 
-          <Link to="/products" className={`inline-flex sm:hidden flex-shrink-0 atelier-label border px-3 py-2 text-xs ${isActive('/products') ? 'border-[var(--primary)] text-[var(--primary)]' : 'border-[var(--outline)] hover:border-[var(--primary)] hover:text-[var(--primary)]'}`}>
-            Collections
-          </Link>
-
-          <Link to="/" className={`hidden sm:inline-flex flex-shrink-0 atelier-label border px-3 md:px-4 py-2 text-xs md:text-sm ${isActive('/') ? 'border-[var(--primary)] text-[var(--primary)]' : 'border-[var(--outline)] hover:border-[var(--primary)] hover:text-[var(--primary)]'}`}>
+          <Link to="/" className={`inline-flex md:hidden flex-shrink-0 atelier-label border px-3 py-2 text-xs ${isActive('/') ? 'border-[var(--primary)] text-[var(--primary)]' : 'border-[var(--outline)] hover:border-[var(--primary)] hover:text-[var(--primary)]'}`}>
             Home
           </Link>
-          <Link to="/products" className={`hidden sm:inline-flex flex-shrink-0 atelier-label border px-3 md:px-4 py-2 text-xs md:text-sm ${isActive('/products') ? 'border-[var(--primary)] text-[var(--primary)]' : 'border-[var(--outline)] hover:border-[var(--primary)] hover:text-[var(--primary)]'}`}>
+
+          <Link to="/" className={`hidden md:inline-flex flex-shrink-0 atelier-label border px-3 md:px-4 py-2 text-xs md:text-sm ${isActive('/') ? 'border-[var(--primary)] text-[var(--primary)]' : 'border-[var(--outline)] hover:border-[var(--primary)] hover:text-[var(--primary)]'}`}>
+            Home
+          </Link>
+          <Link to="/products" className={`hidden md:inline-flex flex-shrink-0 atelier-label border px-3 md:px-4 py-2 text-xs md:text-sm ${isActive('/products') ? 'border-[var(--primary)] text-[var(--primary)]' : 'border-[var(--outline)] hover:border-[var(--primary)] hover:text-[var(--primary)]'}`}>
             Shop
           </Link>
           <Link to="/cart" className={`relative flex-shrink-0 atelier-label border px-3 md:px-4 py-2 text-xs md:text-sm ${isActive('/cart') ? 'border-[var(--primary)] text-[var(--primary)]' : 'border-[var(--outline)] hover:border-[var(--primary)] hover:text-[var(--primary)]'}`}>
