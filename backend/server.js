@@ -13,35 +13,35 @@ app.use(express.static('public')); // Serve static files (images)
 const products = [
   {
     id: 1,
-    name: 'Laptop',
-    price: 999.99,
-    description: 'High performance laptop for work and gaming',
-    image: 'http://localhost:5000/images/laptop.svg',
-    category: 'Electronics'
+    name: 'Verdant Prism I',
+    price: 850,
+    description: 'Hand-blown sculptural glass object with emerald tonal reflections',
+    image: 'https://images.unsplash.com/photo-1618220252344-8ec99ec624b1?auto=format&fit=crop&w=900&q=80',
+    category: 'Objects'
   },
   {
     id: 2,
-    name: 'Smartphone',
-    price: 699.99,
-    description: 'Latest model smartphone with great camera',
-    image: 'http://localhost:5000/images/smartphone.svg',
-    category: 'Electronics'
+    name: 'The Emerald Chronos',
+    price: 4200,
+    description: 'Limited-edition timepiece with polished steel and deep green dial',
+    image: 'https://images.unsplash.com/photo-1524592094714-0f0654e20314?auto=format&fit=crop&w=900&q=80',
+    category: 'Horology'
   },
   {
     id: 3,
-    name: 'Headphones',
-    price: 199.99,
-    description: 'Wireless headphones with noise cancellation',
-    image: 'http://localhost:5000/images/headphones.svg',
-    category: 'Audio'
+    name: 'Flora Silk Throw',
+    price: 620,
+    description: 'Soft heritage weave textile crafted for layered interior styling',
+    image: 'https://images.unsplash.com/photo-1449247709967-d4461a6a6103?auto=format&fit=crop&w=900&q=80',
+    category: 'Textiles'
   },
   {
     id: 4,
-    name: 'Tablet',
-    price: 449.99,
-    description: 'Portable tablet for reading and media',
-    image: 'http://localhost:5000/images/tablet.svg',
-    category: 'Electronics'
+    name: 'Sculptural Form No. 04',
+    price: 420,
+    description: 'Ceramic collectible form in matte finish for gallery-inspired spaces',
+    image: 'https://images.unsplash.com/photo-1515549832467-8783363e19b6?auto=format&fit=crop&w=900&q=80',
+    category: 'Ceramics'
   }
 ];
 

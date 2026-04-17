@@ -1,4 +1,5 @@
 module.exports = {
+  darkMode: 'class',
   content: [
     "./src/**/*.{js,jsx,ts,tsx}",
     "./public/index.html",
@@ -6,9 +7,13 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: '#3B82F6',
-        secondary: '#10B981',
-      }
+        primary: '#003228',
+        secondary: '#585F64',
+      },
+      fontFamily: {
+        headline: ['"Noto Serif"', 'serif'],
+        body: ['Manrope', 'sans-serif'],
+      },
     },
   },
   plugins: [],

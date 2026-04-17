@@ -49,34 +49,29 @@ export default function Products() {
     : products.filter(p => p.category === selectedCategory);
 
   return (
-    <div className="space-y-8">
-      {/* Header */}
-      <div className="text-center">
-        <h1 className="text-4xl font-bold text-gray-800 mb-2">Our Products</h1>
-        <p className="text-gray-600">
-          Check out our amazing collection of products
-        </p>
+    <div className="bg-[var(--surface)] px-6 pb-20 pt-32 md:px-12">
+      <div className="mb-14">
+        <h1 className="font-headline text-5xl italic leading-tight text-[var(--primary)] md:text-7xl">Collections</h1>
+        <p className="mt-4 text-[10px] uppercase tracking-[0.2em] text-[var(--text-muted)]">A curated archive of objects and forms</p>
       </div>
 
-      {/* Error Message */}
       {error && (
-        <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
+        <div className="mb-8 border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
           {error}
         </div>
       )}
 
-      {/* Category Filter */}
       {!loading && !error && (
-        <div className="flex flex-wrap gap-3">
-          <span className="text-gray-700 font-semibold self-center">Filter by:</span>
+        <div className="mb-12 flex flex-wrap items-center gap-3">
+          <span className="atelier-label self-center">Filter by</span>
           {categories.map(category => (
             <button
               key={category}
               onClick={() => setSelectedCategory(category)}
-              className={`px-4 py-2 rounded-lg font-medium transition ${
+              className={`border px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.2em] transition ${
                 selectedCategory === category
-                  ? 'bg-blue-600 text-white'
-                  : 'bg-gray-200 text-gray-800 hover:bg-gray-300'
+                  ? 'border-[var(--primary)] text-[var(--primary)]'
+                  : 'border-[var(--outline)] text-[var(--text-muted)] hover:border-[var(--primary)] hover:text-[var(--primary)]'
               }`}
             >
               {category}
@@ -85,18 +80,16 @@ export default function Products() {
         </div>
       )}
 
-      {/* Loading State */}
       {loading && (
-        <div className="text-center py-12">
-          <div className="inline-block animate-spin">⏳</div>
-          <p className="text-gray-600 mt-4">Loading products...</p>
-          <p className="text-gray-500 text-sm">Make sure backend is running: <code className="bg-gray-200 px-2 py-1 rounded">npm run dev</code></p>
+        <div className="py-16 text-center">
+          <div className="inline-block animate-spin text-2xl text-[var(--primary)]">⏳</div>
+          <p className="mt-4 text-[var(--text-muted)]">Loading products...</p>
+          <p className="mt-2 text-xs uppercase tracking-[0.2em] text-[var(--text-muted)]">Make sure backend is running: npm run dev</p>
         </div>
       )}
 
-      {/* Products Grid */}
       {!loading && filteredProducts.length > 0 && (
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-2 xl:grid-cols-3">
           {filteredProducts.map(product => (
             <ProductCard 
               key={product.id} 
@@ -107,10 +100,10 @@ export default function Products() {
         </div>
       )}
 
-      {/* No Products */}
       {!loading && filteredProducts.length === 0 && !error && (
-        <div className="text-center py-12">
-          <p className="text-gray-600 text-lg">No products found in this category</p>
+        <div className="py-14 text-center">
+          <p className="font-headline text-2xl italic text-[var(--primary)]">No objects in this category</p>
+          <p className="mt-3 text-sm text-[var(--text-muted)]">Try another filter to continue browsing.</p>
         </div>
       )}
     </div>

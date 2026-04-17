@@ -3,43 +3,57 @@ import { Link } from 'react-router-dom';
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-800 text-white mt-12">
-      <div className="container mx-auto px-4 py-8">
-        <div className="grid md:grid-cols-3 gap-8">
-          {/* About */}
+    <footer className="mt-24 border-t border-[var(--outline)] bg-[var(--surface-low)] px-6 py-20 md:px-12">
+      <div className="mx-auto max-w-7xl">
+        <div className="grid grid-cols-1 gap-14 md:grid-cols-4">
           <div>
-            <h3 className="text-lg font-bold mb-3">About Store</h3>
-            <p className="text-gray-300 text-sm">
-              A simple e-commerce store built with MERN stack to demonstrate how API calls work.
+            <span className="font-headline text-lg italic text-[var(--primary)]">ATELIER</span>
+            <p className="mt-6 max-w-[260px] text-[10px] uppercase tracking-[0.2em] text-[var(--text-muted)]">
+              Defining modern elegance through curation and craftsmanship.
             </p>
           </div>
 
-          {/* Quick Links */}
           <div>
-            <h3 className="text-lg font-bold mb-3">Quick Links</h3>
-            <ul className="text-gray-300 text-sm space-y-2">
-              <li><Link to="/" className="hover:text-white transition">Home</Link></li>
-              <li><Link to="/products" className="hover:text-white transition">Products</Link></li>
-              <li><Link to="/cart" className="hover:text-white transition">Cart</Link></li>
-              <li><Link to="/login" className="hover:text-white transition">Login</Link></li>
-              <li><Link to="/logout" className="hover:text-white transition">Logout</Link></li>
+            <h4 className="mb-6 text-[10px] font-bold uppercase tracking-[0.2em] text-[var(--primary)]">Collections</h4>
+            <ul className="space-y-3">
+              <li><Link to="/products" className="text-[10px] uppercase tracking-[0.2em] text-[var(--text-muted)] underline underline-offset-4 transition hover:text-[var(--primary)]">Maison</Link></li>
+              <li><Link to="/products" className="text-[10px] uppercase tracking-[0.2em] text-[var(--text-muted)] underline underline-offset-4 transition hover:text-[var(--primary)]">Archive</Link></li>
+              <li><Link to="/products" className="text-[10px] uppercase tracking-[0.2em] text-[var(--text-muted)] underline underline-offset-4 transition hover:text-[var(--primary)]">Objects</Link></li>
             </ul>
           </div>
 
-          {/* Contact */}
           <div>
-            <h3 className="text-lg font-bold mb-3">Contact</h3>
-            <p className="text-gray-300 text-sm">
-              Email: info@store.com<br/>
-              Phone: 1-800-STORE
-            </p>
+            <h4 className="mb-6 text-[10px] font-bold uppercase tracking-[0.2em] text-[var(--primary)]">Assistance</h4>
+            <ul className="space-y-3">
+              <li><span className="text-[10px] uppercase tracking-[0.2em] text-[var(--text-muted)]">Sustainability</span></li>
+              <li><span className="text-[10px] uppercase tracking-[0.2em] text-[var(--text-muted)]">Shipping and Returns</span></li>
+              <li><span className="text-[10px] uppercase tracking-[0.2em] text-[var(--text-muted)]">Contact</span></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="mb-6 text-[10px] font-bold uppercase tracking-[0.2em] text-[var(--primary)]">Newsletter</h4>
+            <div className="relative">
+              <input
+                type="email"
+                placeholder="ENTER YOUR EMAIL"
+                className="w-full border-b border-[var(--outline)] bg-transparent py-2 text-[10px] uppercase tracking-[0.2em] text-[var(--text-primary)] outline-none"
+              />
+              <button type="button" className="absolute bottom-2 right-0 text-[var(--primary)]" aria-label="Submit email">
+                <span className="material-symbols-outlined text-base">arrow_forward</span>
+              </button>
+            </div>
           </div>
         </div>
 
-        <hr className="bg-gray-700 my-6" />
-        <p className="text-center text-gray-400 text-sm">
-          &copy; 2024 E-Commerce Store. All rights reserved.
-        </p>
+        <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-[var(--outline)] pt-8 md:flex-row">
+          <span className="text-[10px] uppercase tracking-[0.2em] text-[var(--text-muted)]">© 2026 DIGITAL ATELIER. MADE BY SURAJ.</span>
+          <div className="flex items-center gap-6">
+            <span className="text-[10px] uppercase tracking-[0.2em] text-[var(--text-muted)]">Instagram</span>
+            <span className="text-[10px] uppercase tracking-[0.2em] text-[var(--text-muted)]">Journal</span>
+            <span className="text-[10px] uppercase tracking-[0.2em] text-[var(--text-muted)]">Privacy Policy</span>
+          </div>
+        </div>
       </div>
     </footer>
   );

@@ -14,10 +14,10 @@ function App() {
   return (
     <AuthProvider>
       <Router>
-        <div className="flex flex-col min-h-screen bg-gray-50">
+        <div className="flex min-h-screen flex-col bg-[var(--surface)] text-[var(--text-primary)]">
           <Navbar />
 
-          <main className="flex-grow container mx-auto px-4 py-8">
+          <main className="flex-grow">
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/products" element={<Products />} />

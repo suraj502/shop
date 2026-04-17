@@ -1,7 +1,34 @@
-import React, { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
-import { getProductById } from '../services/api';
+import React, { useEffect, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { getProductById } from '../services/api';
+
+const relatedProducts = [
+  {
+    name: 'Ceramic Vessel No. 04',
+    category: 'Objects',
+    price: '$220.00',
+    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAlwyG7j3wR8eLi4tvqEUo08BFBUNx5CU5yLY67fjg6teFohe11rQFucSA7KGLQckwQD-lmegfVV5qS-oFdGamjZdq3FAAy1FGcybvlXYsjJkXKMSze5lkDIdczIVPMiszAwExzlyxr8VE39Bk_F5BOjYPsoFvs96v-Dxpjmc82gDZWabAZJBqk6V6AXSHRfS3xTmhVPPruM0LB5iCKLwgMk9dwgZETebrPz25q2JwQSZJzTHGEzCEqcUJpQnRJhQiK1iDImB-r7h4',
+  },
+  {
+    name: 'Cashmere Throw',
+    category: 'Living',
+    price: '$480.00',
+    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBoH8cqN-4VU2LsXfBP--YDGQvfo3st4C6-aoGx-XzROawBh1twpgTwOgHsoNdtHDh-UYDJxcxwCmprHxGbt8kv67dfaFtzQ640rdQqr303HjQqcT0Yk6neNkn8dP_YYbL8xoZBGuiN-otoR97R2QaTiwawUWgkPvMChXRTuLeKjCUp9pjbjk_yIWAEbcchGysU5neivowTR66Y6LVuNoJ9uAfHlCsjqQzJgIcm5dBXF5BwIzS-8hetssjw5JM0AfB5Mhen0C2xFuQ',
+  },
+  {
+    name: 'The Sculptural Tote',
+    category: 'Leather',
+    price: '$890.00',
+    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAOIb08rmy-1UtXZ_83JYl2RkT_Wfkf1gpsW4EDhNvtSOJJwa6bdkIbRPJz8dMsqzrLODbqMBRqm1oJW_J1Yps0TR16MCddk1IzWkiu3aqGYZqi6X8kuWukX9-kd0lY42KASL8Z97Z-_CZM31oCDtzQeC6yfCcpnn6_W8bQmYA3mWiVEm1Ha6exCA3sJUDVkMjIbmm30oHoK9KiKRo1Pgkm1Pj7kesoLdCjVAoSsytN2_td_oaKtYAmaqHudZAeBujNxnWqrZdvD4o',
+  },
+  {
+    name: 'Textured Carafe',
+    category: 'Dining',
+    price: '$160.00',
+    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAkiy7daAlHPZ6RtSYCkuN1W3mS1sjGv_sM064DM-03CustTA2jwjWpohqfF-v7U4BF_YBb3p_hLqcCuQ2XAAvclG8MAKCGK33XM07DpV4nSZfMIVgPGJFw27ajwvFlbQTev06-0jk_lRFwT1K3XOgRH-deS4iZ5cToRX4w5Kyid1_jsCGQhyAEKIBvqKK2D1Pzy7FHt1QRRCoNcXU7FJt7_TFubsefN4QvkhvtQ6chox5djE2B8mefQKrCFhFV6GT2hk8BpDkoVEI',
+  },
+];
 
 export default function ProductDetail() {
   const { id } = useParams();
@@ -16,29 +43,28 @@ export default function ProductDetail() {
       try {
         setLoading(true);
         setError(null);
-        const data = await getProductById(parseInt(id));
+        const data = await getProductById(parseInt(id, 10));
         setProduct(data);
       } catch (err) {
         setError('Failed to fetch product details');
-        console.error(err);
       } finally {
         setLoading(false);
       }
     };
-    
+
     fetchProduct();
   }, [id]);
 
   const handleAddToCart = () => {
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
-    const existingItem = cart.find(item => item.id === product.id);
-    
+    const existingItem = cart.find((item) => item.id === product.id);
+
     if (existingItem) {
       existingItem.quantity += quantity;
     } else {
       cart.push({ ...product, quantity });
     }
-    
+
     localStorage.setItem('cart', JSON.stringify(cart));
     window.dispatchEvent(new Event('cart-updated'));
     alert(`${product.name} added to cart!`);
@@ -46,19 +72,19 @@ export default function ProductDetail() {
 
   if (loading) {
     return (
-      <div className="text-center py-12">
-        <div className="inline-block animate-spin text-4xl">⏳</div>
-        <p className="text-gray-600 mt-4">Loading product details...</p>
+      <div className="px-6 py-32 text-center md:px-12">
+        <div className="inline-block animate-spin text-3xl text-[var(--primary)]">⏳</div>
+        <p className="mt-4 text-[var(--text-muted)]">Loading product details...</p>
       </div>
     );
   }
 
   if (error || !product) {
     return (
-      <div className="text-center py-12">
-        <div className="text-4xl mb-4">❌</div>
-        <p className="text-gray-600 mb-6">{error}</p>
-        <Link to="/products" className="btn-primary">
+      <div className="px-6 py-32 text-center md:px-12">
+        <p className="font-headline text-3xl italic text-[var(--primary)]">Product not available</p>
+        <p className="mt-3 text-[var(--text-muted)]">{error}</p>
+        <Link to="/products" className="btn-primary mt-7">
           Back to Products
         </Link>
       </div>
@@ -66,132 +92,107 @@ export default function ProductDetail() {
   }
 
   return (
-    <div className="space-y-8">
-      <div className="rounded-3xl bg-gradient-to-r from-slate-950 to-blue-900 p-6 text-white shadow-xl">
-        <p className="text-sm font-semibold uppercase tracking-[0.3em] text-cyan-300">Product details</p>
-        <div className="mt-3 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
-          <div>
-            <h1 className="text-3xl font-black md:text-4xl">Discover what makes this item stand out.</h1>
-            <p className="mt-2 max-w-2xl text-blue-100">
-              View the full product details, choose your quantity, and add it to the cart from one focused page.
-            </p>
+    <div className="bg-[var(--surface)] px-6 pb-24 pt-32 md:px-12">
+      <div className="mx-auto grid max-w-[1600px] grid-cols-1 gap-14 lg:grid-cols-12">
+        <div className="lg:col-span-7">
+          <div className="mb-5 aspect-[4/5] overflow-hidden bg-[var(--surface-low)]">
+            <img src={product.image} alt={product.name} className="h-full w-full object-cover transition duration-700 hover:scale-105" />
           </div>
-
-          <div className="rounded-2xl border border-white/10 bg-white/10 px-4 py-3 text-sm backdrop-blur">
-            {isAuthenticated ? (
-              <>
-                <p className="font-semibold text-cyan-300">Signed in as {user?.name}</p>
-                <p className="text-blue-100">You can continue shopping without leaving this page.</p>
-              </>
-            ) : (
-              <>
-                <p className="font-semibold text-cyan-300">Guest checkout</p>
-                <p className="text-blue-100">
-                  <Link to="/login" state={{ from: { pathname: `/products/${id}` } }} className="underline decoration-cyan-300 decoration-2 underline-offset-4">
-                    Sign in
-                  </Link>{' '}
-                  for a smoother store experience.
-                </p>
-              </>
-            )}
+          <div className="grid grid-cols-3 gap-4 md:grid-cols-4">
+            {[1, 2, 3, 4].map((item) => (
+              <div key={item} className="aspect-square overflow-hidden bg-[var(--surface-low)]">
+                <img src={product.image} alt={`${product.name} view ${item}`} className="h-full w-full object-cover opacity-85" />
+              </div>
+            ))}
           </div>
         </div>
-      </div>
 
-      {/* Back Button */}
-      <Link to="/products" className="text-blue-600 hover:text-blue-800 font-semibold">
-        ← Back to Products
-      </Link>
+        <div className="lg:col-span-5">
+          <nav className="mb-8 flex items-center gap-2 text-[10px] uppercase tracking-[0.2em] text-[var(--text-muted)]">
+            <Link to="/products" className="hover:text-[var(--primary)]">Archive</Link>
+            <span>/</span>
+            <span>{product.category}</span>
+          </nav>
 
-      {/* Product Detail */}
-      <div className="grid md:grid-cols-2 gap-8 card p-8">
-        {/* Image */}
-        <div>
-          <img 
-            src={product.image} 
-            alt={product.name}
-            className="w-full rounded-lg shadow-lg"
-          />
-        </div>
+          <h1 className="font-headline text-5xl italic leading-tight text-[var(--primary)] md:text-6xl">{product.name}</h1>
 
-        {/* Details */}
-        <div className="space-y-6">
-          {/* Header */}
-          <div>
-            <h1 className="text-4xl font-bold text-gray-800 mb-2">
-              {product.name}
-            </h1>
-            <p className="text-sm text-gray-500">
-              Category: <span className="font-semibold text-gray-700">{product.category}</span>
-            </p>
+          <div className="mb-10 mt-8 flex items-center justify-between border-b border-[var(--outline)] pb-6">
+            <p className="font-headline text-3xl italic text-[var(--text-primary)]">${Number(product.price).toFixed(2)}</p>
+            <p className="text-[10px] uppercase tracking-[0.2em] text-[var(--text-muted)]">Limited Edition 1/500</p>
           </div>
 
-          {/* Price */}
-          <div className="text-5xl font-bold text-blue-600">
-            ${product.price}
-          </div>
+          <p className="text-sm leading-relaxed text-[var(--text-muted)]">
+            {product.description}. Crafted with precision and balanced form, this object combines sculptural aesthetics with practical use.
+          </p>
 
-          {/* Description */}
-          <div className="border-t border-b py-6">
-            <h3 className="font-semibold text-gray-800 mb-2">Description</h3>
-            <p className="text-gray-600 leading-relaxed">
-              {product.description}
-            </p>
-          </div>
+          <div className="mt-10 space-y-6">
+            <div>
+              <p className="mb-3 text-[10px] uppercase tracking-[0.2em] text-[var(--text-muted)]">Quantity</p>
+              <div className="inline-flex items-center border border-[var(--outline)]">
+                <button type="button" onClick={() => setQuantity(Math.max(1, quantity - 1))} className="px-4 py-2 text-[var(--text-primary)] hover:bg-[var(--surface-low)]">−</button>
+                <input
+                  type="number"
+                  min="1"
+                  value={quantity}
+                  onChange={(e) => setQuantity(Math.max(1, parseInt(e.target.value, 10) || 1))}
+                  className="w-14 border-x border-[var(--outline)] bg-transparent px-2 py-2 text-center text-sm outline-none"
+                />
+                <button type="button" onClick={() => setQuantity(quantity + 1)} className="px-4 py-2 text-[var(--text-primary)] hover:bg-[var(--surface-low)]">+</button>
+              </div>
+            </div>
 
-          {/* Quantity Selector */}
-          <div className="flex items-center gap-4">
-            <label className="font-semibold text-gray-800">Quantity:</label>
-            <div className="flex items-center border border-gray-300 rounded-lg">
-              <button 
-                onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                className="px-4 py-2 hover:bg-gray-100"
-              >
-                −
-              </button>
-              <input 
-                type="number"
-                value={quantity}
-                onChange={(e) => setQuantity(Math.max(1, parseInt(e.target.value) || 1))}
-                className="w-16 text-center border-l border-r border-gray-300"
-                min="1"
-              />
-              <button 
-                onClick={() => setQuantity(quantity + 1)}
-                className="px-4 py-2 hover:bg-gray-100"
-              >
-                +
-              </button>
+            <button onClick={handleAddToCart} className="btn-primary w-full">
+              Add to Cart
+              <span className="material-symbols-outlined ml-2 text-sm">arrow_forward</span>
+            </button>
+
+            <div className="flex items-center justify-between text-[10px] uppercase tracking-[0.2em] text-[var(--text-muted)]">
+              <button type="button" className="underline underline-offset-4 hover:text-[var(--primary)]">Find in Store</button>
+              <button type="button" className="underline underline-offset-4 hover:text-[var(--primary)]">Shipping Inquiry</button>
             </div>
           </div>
 
-          {/* Buttons */}
-          <div className="flex gap-4">
-            <button 
-              onClick={handleAddToCart}
-              className="flex-1 btn-primary"
-            >
-              🛒 Add to Cart
-            </button>
-            <Link 
-              to="/products"
-              className="flex-1 btn-secondary text-center"
-            >
-              Continue Shopping
-            </Link>
-          </div>
-
-          {/* API Info */}
-          <div className="bg-blue-50 p-4 rounded-lg">
-            <p className="text-sm text-gray-700">
-              <strong>API Call Used:</strong><br/>
-              <code className="bg-gray-200 px-2 py-1 rounded text-xs">
-                GET /api/products/{id}
-              </code>
-            </p>
+          <div className="mt-10 border border-[var(--outline)] bg-[var(--surface-low)] p-4 text-sm text-[var(--text-muted)]">
+            {isAuthenticated ? `Signed in as ${user?.name}.` : 'Guest checkout active.'} API Call Used: GET /api/products/{id}
           </div>
         </div>
       </div>
+
+      <section className="mx-auto mt-24 max-w-[1600px] bg-[var(--surface-low)] p-10 md:p-14">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+          <div>
+            <h3 className="font-headline text-2xl italic text-[var(--primary)]">Materials</h3>
+            <p className="mt-3 text-xs uppercase tracking-[0.16em] text-[var(--text-muted)]">Grade 5 aerospace titanium. Sapphire crystal with anti-reflective finish and hand-stitched leather details.</p>
+          </div>
+          <div>
+            <h3 className="font-headline text-2xl italic text-[var(--primary)]">Precision</h3>
+            <p className="mt-3 text-xs uppercase tracking-[0.16em] text-[var(--text-muted)]">Caliber manual movement. 72-hour reserve. 28,800 vibrations per hour and 100m water resistance.</p>
+          </div>
+          <div>
+            <h3 className="font-headline text-2xl italic text-[var(--primary)]">Heritage</h3>
+            <p className="mt-3 text-xs uppercase tracking-[0.16em] text-[var(--text-muted)]">Each unit is personally inspected and signed by our lead maker over a three-month assembly cycle.</p>
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto mt-24 max-w-[1600px]">
+        <div className="mb-10 flex items-end justify-between">
+          <h2 className="font-headline text-4xl italic text-[var(--primary)]">You May Also Like</h2>
+          <Link to="/products" className="text-[10px] uppercase tracking-[0.2em] text-[var(--text-muted)] hover:text-[var(--primary)]">View Full Archive</Link>
+        </div>
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
+          {relatedProducts.map((item) => (
+            <div key={item.name} className="group">
+              <div className="mb-4 aspect-[3/4] overflow-hidden bg-[var(--surface-high)]">
+                <img src={item.image} alt={item.name} className="h-full w-full object-cover transition duration-700 group-hover:scale-110" />
+              </div>
+              <p className="text-[10px] uppercase tracking-[0.2em] text-[var(--text-muted)]">{item.category}</p>
+              <p className="mt-1 font-headline text-xl italic text-[var(--primary)]">{item.name}</p>
+              <p className="mt-1 text-sm text-[var(--text-primary)]">{item.price}</p>
+            </div>
+          ))}
+        </div>
+      </section>
     </div>
   );
 }
