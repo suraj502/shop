@@ -76,7 +76,7 @@ export default function Navbar() {
           <button
             type="button"
             onClick={toggleTheme}
-            className="inline-flex h-11 w-11 items-center justify-center border border-[var(--outline)] text-[var(--primary)] transition hover:bg-[var(--surface-low)] md:h-10 md:w-10"
+            className="inline-flex h-12 w-12 items-center justify-center border border-[var(--outline)] text-[var(--primary)] transition hover:bg-[var(--surface-low)] md:h-10 md:w-10"
             aria-label="Toggle theme"
             title={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
           >
