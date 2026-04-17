@@ -74,4 +74,13 @@ body {
     @apply text-[10px] font-semibold uppercase tracking-[0.2em];
     color: var(--text-muted);
   }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
 }

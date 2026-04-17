@@ -50,14 +50,14 @@ export default function Navbar() {
 
   return (
     <nav className="sticky top-0 z-50 w-full border-b border-[var(--outline)] bg-[var(--surface)]/90 backdrop-blur-md">
-      <div className="mx-auto flex max-w-[1600px] flex-col gap-4 px-6 py-5 md:px-12 lg:flex-row lg:items-center lg:justify-between">
-        <div className="flex items-center justify-between gap-4">
-          <div className="flex items-center gap-8">
-            <Link to="/" className="font-headline text-2xl tracking-tight text-[var(--primary)]">
+      <div className="mx-auto flex max-w-[1600px] flex-col gap-2 px-4 py-3 md:px-12 md:py-5 lg:flex-row lg:items-center lg:justify-between">
+        <div className="flex items-center justify-between gap-2">
+          <div className="flex items-center gap-4 md:gap-8">
+            <Link to="/" className="font-headline text-xl md:text-2xl tracking-tight text-[var(--primary)]">
               ATELIER
             </Link>
 
-            <div className="hidden items-center gap-8 md:flex">
+            <div className="hidden items-center gap-6 md:gap-8 md:flex">
               <Link to="/products" className={`atelier-label border-b pb-1 ${isActive('/products') ? 'border-[var(--primary)] text-[var(--primary)]' : 'border-transparent hover:border-[var(--outline)]'}`}>
                 Collections
               </Link>
@@ -67,38 +67,38 @@ export default function Navbar() {
             </div>
           </div>
 
-          <div className="rounded-full border border-[var(--outline)] px-3 py-1 text-xs text-[var(--text-muted)] md:hidden">
+          <div className="rounded-full border border-[var(--outline)] px-2 py-0.5 text-[10px] md:text-xs text-[var(--text-muted)] md:hidden">
               {isAuthenticated ? `Signed in as ${user?.name}` : 'Guest mode'}
           </div>
         </div>
 
-        <div className="flex flex-nowrap items-center gap-2 overflow-x-auto md:gap-3">
+        <div className="flex flex-nowrap items-center gap-1.5 overflow-x-auto md:gap-3 scrollbar-hide">
           <button
             type="button"
             onClick={toggleTheme}
-            className="inline-flex h-12 w-12 items-center justify-center border border-[var(--outline)] text-[var(--primary)] transition hover:bg-[var(--surface-low)] md:h-10 md:w-10"
+            className="inline-flex h-9 w-9 md:h-10 md:w-10 flex-shrink-0 items-center justify-center border border-[var(--outline)] text-[var(--primary)] transition hover:bg-[var(--surface-low)]"
             aria-label="Toggle theme"
             title={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
           >
-            <span className="material-symbols-outlined text-lg">
+            <span className="material-symbols-outlined text-base md:text-lg">
               {theme === 'dark' ? 'light_mode' : 'dark_mode'}
             </span>
           </button>
 
-          <Link to="/products" className={`inline-flex sm:hidden atelier-label border px-4 py-2.5 ${isActive('/products') ? 'border-[var(--primary)] text-[var(--primary)]' : 'border-[var(--outline)] hover:border-[var(--primary)] hover:text-[var(--primary)]'}`}>
+          <Link to="/products" className={`inline-flex sm:hidden flex-shrink-0 atelier-label border px-3 py-2 text-xs ${isActive('/products') ? 'border-[var(--primary)] text-[var(--primary)]' : 'border-[var(--outline)] hover:border-[var(--primary)] hover:text-[var(--primary)]'}`}>
             Collections
           </Link>
 
-          <Link to="/" className={`hidden sm:inline-flex atelier-label border px-4 py-2 ${isActive('/') ? 'border-[var(--primary)] text-[var(--primary)]' : 'border-[var(--outline)] hover:border-[var(--primary)] hover:text-[var(--primary)]'}`}>
+          <Link to="/" className={`hidden sm:inline-flex flex-shrink-0 atelier-label border px-3 md:px-4 py-2 text-xs md:text-sm ${isActive('/') ? 'border-[var(--primary)] text-[var(--primary)]' : 'border-[var(--outline)] hover:border-[var(--primary)] hover:text-[var(--primary)]'}`}>
             Home
           </Link>
-          <Link to="/products" className={`hidden sm:inline-flex atelier-label border px-4 py-2 ${isActive('/products') ? 'border-[var(--primary)] text-[var(--primary)]' : 'border-[var(--outline)] hover:border-[var(--primary)] hover:text-[var(--primary)]'}`}>
+          <Link to="/products" className={`hidden sm:inline-flex flex-shrink-0 atelier-label border px-3 md:px-4 py-2 text-xs md:text-sm ${isActive('/products') ? 'border-[var(--primary)] text-[var(--primary)]' : 'border-[var(--outline)] hover:border-[var(--primary)] hover:text-[var(--primary)]'}`}>
             Shop
           </Link>
-          <Link to="/cart" className={`relative atelier-label border px-4 py-2.5 sm:py-2 ${isActive('/cart') ? 'border-[var(--primary)] text-[var(--primary)]' : 'border-[var(--outline)] hover:border-[var(--primary)] hover:text-[var(--primary)]'}`}>
+          <Link to="/cart" className={`relative flex-shrink-0 atelier-label border px-3 md:px-4 py-2 text-xs md:text-sm ${isActive('/cart') ? 'border-[var(--primary)] text-[var(--primary)]' : 'border-[var(--outline)] hover:border-[var(--primary)] hover:text-[var(--primary)]'}`}>
             Bag
             {cartCount > 0 && (
-              <span className="absolute -right-2 -top-2 flex h-5 min-w-5 items-center justify-center rounded-full bg-[var(--primary)] px-1 text-[10px] font-bold text-white">
+              <span className="absolute -right-1 -top-2 flex h-4 min-w-4 items-center justify-center rounded-full bg-[var(--primary)] px-0.5 text-[9px] font-bold text-white">
                 {cartCount}
               </span>
             )}
@@ -106,12 +106,12 @@ export default function Navbar() {
 
           {isAuthenticated ? (
             <>
-              <div className="hidden border border-[var(--outline)] px-4 py-2 text-sm text-[var(--text-muted)] lg:block">
+              <div className="hidden border border-[var(--outline)] px-2 md:px-4 py-2 text-xs md:text-sm text-[var(--text-muted)] lg:block">
                 Hi, {user?.name}
               </div>
               <Link
                 to="/logout"
-                className="btn-primary"
+                className="flex-shrink-0 btn-primary text-xs md:text-sm py-1.5 md:py-2 px-3 md:px-4"
               >
                 Logout
               </Link>
@@ -120,14 +120,14 @@ export default function Navbar() {
             <Link
               to="/login"
               state={{ from: location }}
-              className="btn-primary"
+              className="flex-shrink-0 btn-primary text-xs md:text-sm py-1.5 md:py-2 px-3 md:px-4"
             >
               Login
             </Link>
           )}
 
-          <button type="button" className="hidden md:inline-flex h-10 w-10 items-center justify-center text-[var(--primary)] transition hover:opacity-70" aria-label="Search">
-            <span className="material-symbols-outlined">search</span>
+          <button type="button" className="hidden md:inline-flex flex-shrink-0 h-9 w-9 md:h-10 md:w-10 items-center justify-center text-[var(--primary)] transition hover:opacity-70" aria-label="Search">
+            <span className="material-symbols-outlined text-base">search</span>
           </button>
         </div>
       </div>
