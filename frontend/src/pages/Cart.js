@@ -20,6 +20,7 @@ export default function Cart() {
     const updatedCart = cartItems.filter(item => item.id !== productId);
     setCartItems(updatedCart);
     localStorage.setItem('cart', JSON.stringify(updatedCart));
+    window.dispatchEvent(new Event('cart-updated'));
     calculateTotal(updatedCart);
   };
 
@@ -32,6 +33,7 @@ export default function Cart() {
     
     setCartItems(updatedCart);
     localStorage.setItem('cart', JSON.stringify(updatedCart));
+    window.dispatchEvent(new Event('cart-updated'));
     calculateTotal(updatedCart);
   };
 
@@ -40,6 +42,7 @@ export default function Cart() {
     localStorage.removeItem('cart');
     setCartItems([]);
     setTotal(0);
+    window.dispatchEvent(new Event('cart-updated'));
   };
 
   return (

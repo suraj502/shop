@@ -37,6 +37,7 @@ export default function Products() {
     }
     
     localStorage.setItem('cart', JSON.stringify(cart));
+    window.dispatchEvent(new Event('cart-updated'));
     alert(`${product.name} added to cart!`);
     window.location.reload();
   };

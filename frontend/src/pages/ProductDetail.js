@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { getProductById } from '../services/api';
+import { useAuth } from '../context/AuthContext';
 
 export default function ProductDetail() {
   const { id } = useParams();
+  const { isAuthenticated, user } = useAuth();
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -38,6 +40,7 @@ export default function ProductDetail() {
     }
     
     localStorage.setItem('cart', JSON.stringify(cart));
+    window.dispatchEvent(new Event('cart-updated'));
     alert(`${product.name} added to cart!`);
   };
 
@@ -64,6 +67,37 @@ export default function ProductDetail() {
 
   return (
     <div className="space-y-8">
+      <div className="rounded-3xl bg-gradient-to-r from-slate-950 to-blue-900 p-6 text-white shadow-xl">
+        <p className="text-sm font-semibold uppercase tracking-[0.3em] text-cyan-300">Product details</p>
+        <div className="mt-3 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+          <div>
+            <h1 className="text-3xl font-black md:text-4xl">Discover what makes this item stand out.</h1>
+            <p className="mt-2 max-w-2xl text-blue-100">
+              View the full product details, choose your quantity, and add it to the cart from one focused page.
+            </p>
+          </div>
+
+          <div className="rounded-2xl border border-white/10 bg-white/10 px-4 py-3 text-sm backdrop-blur">
+            {isAuthenticated ? (
+              <>
+                <p className="font-semibold text-cyan-300">Signed in as {user?.name}</p>
+                <p className="text-blue-100">You can continue shopping without leaving this page.</p>
+              </>
+            ) : (
+              <>
+                <p className="font-semibold text-cyan-300">Guest checkout</p>
+                <p className="text-blue-100">
+                  <Link to="/login" state={{ from: { pathname: `/products/${id}` } }} className="underline decoration-cyan-300 decoration-2 underline-offset-4">
+                    Sign in
+                  </Link>{' '}
+                  for a smoother store experience.
+                </p>
+              </>
+            )}
+          </div>
+        </div>
+      </div>
+
       {/* Back Button */}
       <Link to="/products" className="text-blue-600 hover:text-blue-800 font-semibold">
         ← Back to Products
@@ -150,7 +184,7 @@ export default function ProductDetail() {
           {/* API Info */}
           <div className="bg-blue-50 p-4 rounded-lg">
             <p className="text-sm text-gray-700">
-              <strong>💡 API Call Used:</strong><br/>
+              <strong>API Call Used:</strong><br/>
               <code className="bg-gray-200 px-2 py-1 rounded text-xs">
                 GET /api/products/{id}
               </code>
